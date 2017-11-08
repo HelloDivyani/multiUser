@@ -336,6 +336,7 @@ public class TestClient extends javax.swing.JFrame {
         //socket 
         try
         {
+            //TestServer obj=new TestServer();
         Socket sk=new Socket("127.0.0.1",5000);
 		//BufferedReader sin=new BufferedReader(new InputStreamReader(sk.getInputStream()));
 		PrintStream sout=new PrintStream(sk.getOutputStream());
@@ -346,7 +347,9 @@ public class TestClient extends javax.swing.JFrame {
                 //from client
                 // to 
                  //sout.println(from);
+                  // obj.logcat.setText(from+" : "+s);
                 sout.println(from+" : "+s);
+              
                  sk.close();
 		//sin.close();
 		 sout.close();
