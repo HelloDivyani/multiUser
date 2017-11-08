@@ -135,6 +135,8 @@ public class TestServer extends javax.swing.JFrame
     }
   public void startServer() throws IOException  
   {
+     // logcat.setEditable(false);
+      //logcat.append("Server Booted\n");
       // logcat.setEditable(false);
 
             server=new ServerSocket(5000);
@@ -175,11 +177,11 @@ public class TestServer extends javax.swing.JFrame
               JOptionPane.showMessageDialog(null,"Exception Occured\nPlease Check!!!");
             //Logger.getLogger(TestServer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }
+        
         
         
     }
-
+  }
     private void doOperation() {
          logcat.setEditable(false);
 
@@ -203,7 +205,7 @@ public class TestServer extends javax.swing.JFrame
 
   
   
-    private static class ServerThread implements Runnable {
+    public static class ServerThread implements Runnable {
         
         //Runnable helping to create multiple thread
         
@@ -215,6 +217,7 @@ public class TestServer extends javax.swing.JFrame
         int id;
         String s;
         //public String ok;
+        TestServer ob=new TestServer();
         ServerThread(Socket client, int count ,TestServer server ) throws IOException {
             
             this.client=client;
@@ -224,9 +227,9 @@ public class TestServer extends javax.swing.JFrame
             
            System.out.println("Connection "+id+"established with client "+client);
            // logcat.setText("");
-          
+        //  logcat.append("");
            con=con+"Connection "+id+"established with client "+client;
-          // ob.logcat.setText(con);
+         ob.logcat.setText(con);
            //Different for diffrent client
             cin=new BufferedReader(new InputStreamReader(client.getInputStream()));
             cout=new PrintStream(client.getOutputStream());
@@ -238,7 +241,7 @@ public class TestServer extends javax.swing.JFrame
         public void run() {
             int x=1;
             int flag=1;
-             TestServer ob=new TestServer();
+            // TestServer ob1=new TestServer();
           String c1="";
          try{
          while(true){
@@ -250,7 +253,7 @@ public class TestServer extends javax.swing.JFrame
 			c1=con+"\"Client(\"+id+\") :\"+s+\"\\n\"";
                         //s=stdin.readLine();
                       
-                            ob.logcat.setText(con);
+                          //  ob.logcat.setText(con);
                           
                             s=sc.nextLine();
                         if (s.equalsIgnoreCase("bye"))
@@ -421,7 +424,7 @@ public class TestServer extends javax.swing.JFrame
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea logcat;
+    public javax.swing.JTextArea logcat;
     private javax.swing.JTextArea online;
     // End of variables declaration                   
 }
